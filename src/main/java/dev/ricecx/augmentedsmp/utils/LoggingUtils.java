@@ -54,6 +54,8 @@ public class LoggingUtils {
 
     public static void setVerbose(boolean VERBOSE) {
         LoggingUtils.VERBOSE = VERBOSE;
+        if(VERBOSE)
+            LoggingUtils.info("Verbose mode has been enabled");
     }
 
     public static void toggleVerbose() {

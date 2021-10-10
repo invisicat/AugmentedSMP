@@ -6,6 +6,7 @@ import dev.ricecx.augmentedsmp.core.command.CommandsEnum;
 import dev.ricecx.augmentedsmp.core.command.annotations.Command;
 import dev.ricecx.augmentedsmp.core.command.CommandCategory;
 import dev.ricecx.augmentedsmp.core.command.ICommand;
+import dev.ricecx.augmentedsmp.utils.Constants;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.*;
 import net.md_5.bungee.api.chat.hover.content.Text;
@@ -53,10 +54,7 @@ public class HelpCommand implements ICommand {
 
     private void sendCategoryHelp(CommandSender sender, CommandCategory category) {}
     private void sendCommandHelp(CommandSender sender, CommandsEnum command) {
-        BaseComponent[] title = new ComponentBuilder()
-                .append(gradient("#55FF55", "#FFFF55", "AugmentedSMP"))
-                .append(gradient("#b2ef91", "#fa9372", " v" + AugmentedSMP.getInstance().getDescription().getVersion() + "(" + AugmentedSMP.getInstance().getDescription().getAPIVersion() + ")"))
-                .create();
+        BaseComponent[] title = Constants.createTitle().create();
         sender.sendMessage(" ");
         sender.spigot().sendMessage(title);
         sender.sendMessage(command.getCommandMetadata().name());
@@ -84,9 +82,7 @@ public class HelpCommand implements ICommand {
         leftArrow.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/asmp help " + (currPage - 1)));
         leftArrow.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Go to page " + (currPage - 1))));
         // Title
-        BaseComponent[] title = new ComponentBuilder()
-                .append(gradient("#55FF55", "#FFFF55", "AugmentedSMP"))
-                .append(gradient("#b2ef91", "#fa9372", " v" + AugmentedSMP.getInstance().getDescription().getVersion() + "(" + AugmentedSMP.getInstance().getDescription().getAPIVersion() + ")"))
+        BaseComponent[] title =  Constants.createTitle()
                 .append(" Page " + currPage + "/" + maxPages).color(ChatColor.WHITE)
                 .append(leftArrow).bold(true)
                 .append(rightArrow).bold(true)
@@ -98,7 +94,7 @@ public class HelpCommand implements ICommand {
 
         int idx = (currPage - 1) * 8;
         for (CommandsEnum command : Arrays.stream(CommandsEnum.values()).collect(Collectors.toList()).subList(idx, Math.min(CommandsEnum.values().length, (idx + 8 - 1)))) {
-            sender.sendMessage("/asmp " + command.getCommandMetadata().name() + " - " + command.getCommandMetadata().description());
+            sender.sendMessage(fmt("&a/asmp " + command.getCommandMetadata().name() + " - " + command.getCommandMetadata().description()));
         }
     }
 

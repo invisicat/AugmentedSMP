@@ -14,6 +14,8 @@ public class CorePlugin extends JavaPlugin {
 
     public CorePlugin() {
         paper = isUsingPaper();
+
+        configureLogger();
     }
     /**
      * Register a listener to Bukkit
@@ -43,13 +45,18 @@ public class CorePlugin extends JavaPlugin {
         Bukkit.addRecipe(recipe);
     }
 
+    private void configureLogger() {
+        this.saveDefaultConfig();
+        if(this.getConfig().getBoolean("verbose"))
+            LoggingUtils.setVerbose(true);
+    }
     private boolean isUsingPaper() {
         try {
             Class.forName("com.destroystokyo.paper.event.entity.PreCreatureSpawnEvent");
-            LoggingUtils.info("Paper events will be used in order to improve performance");
+            this.getLogger().info("Paper events will be used in order to improve performance");
             return true;
         } catch (ClassNotFoundException e) {
-            LoggingUtils.info("This server doesn't seem to be running Paper or a paper-fork, falling back to Spigot events.");
+            this.getLogger().info("This server doesn't seem to be running Paper or a paper-fork, falling back to Spigot events.");
             return false;
         }
     }
