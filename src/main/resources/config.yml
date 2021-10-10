@@ -1,0 +1,31 @@
+
+
+###
+# General Settings
+###
+
+# Whether verbose logging is enabled or not. (default = false)
+verbose: false
+language: en-US
+
+
+###
+# Placeholder API
+###
+placeholderAPI:
+  enabled: false
+
+modules:
+  removeXPOnDeath:
+    enabled: true
+  removeInventoryOnDeath:
+    enabled: true
+  leveling:
+    enabled: true
+
+
+
+###
+# Metrics
+###
+metrics: true

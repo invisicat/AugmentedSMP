@@ -1,0 +1,8 @@
+name: AugmentedSMP
+version: '${project.version}'
+main: dev.ricecx.augmentedsmp.AugmentedSMP
+api-version: 1.17
+prefix: AugmentedSMP
+authors: [ RiceCX ]
+description: A plugin for people that want to spice up their SMP.
+website: https://mods.ricecx.cc/augmentedsmp
