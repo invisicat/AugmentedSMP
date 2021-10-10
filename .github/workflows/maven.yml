@@ -66,7 +66,7 @@ jobs:
       - name: Build with Maven
         run: mvn -T 1C -B package --file pom.xml
       - name: Stage jar
-        run: mkdir staging && cp target/AugmentedSMP.jar staging && mv staging/AugmentedSMP.jar staging/AugmentedSMP_$GITHUB_SHA.jar
+        run: mkdir staging && cp target/AugmentedSMP-1.0.jar staging && mv staging/AugmentedSMP.jar staging/AugmentedSMP_$GITHUB_SHA.jar
       - name: Upload jar
         uses: actions/upload-artifact@v2
         with:
