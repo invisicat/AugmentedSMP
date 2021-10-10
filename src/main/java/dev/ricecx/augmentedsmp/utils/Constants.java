@@ -6,6 +6,8 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 
 public class Constants {
 
+    public static final String RESOURCE_ID = "";
+
     public static ComponentBuilder createTitle() {
         return new ComponentBuilder()
                 .append(gradient("#55FF55", "#FFFF55", "AugmentedSMP"))

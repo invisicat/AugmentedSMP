@@ -7,10 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Command(
@@ -29,9 +26,9 @@ public class ModulesCommand implements ICommand {
         final List<String> completions = new ArrayList<>();
 
         if (args.length <= 0) {
-            completions.addAll(Arrays.stream(ModulesEnum.values()).map(Enum::name).collect(Collectors.toList()));
+            completions.addAll(Arrays.stream(ModulesEnum.values()).map(Enum::name).map((s) -> s.toLowerCase(Locale.ROOT)).collect(Collectors.toList()));
         } else if (args.length <= 2)
-            StringUtil.copyPartialMatches(args[1], Arrays.stream(ModulesEnum.values()).map(Enum::name).collect(Collectors.toList()), completions);
+            StringUtil.copyPartialMatches(args[1], Arrays.stream(ModulesEnum.values()).map(Enum::name).map((s) -> s.toLowerCase(Locale.ROOT)).collect(Collectors.toList()), completions);
         else
             return List.of();
 

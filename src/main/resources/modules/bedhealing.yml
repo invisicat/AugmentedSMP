@@ -1,0 +1,10 @@
+
+
+
+potions:
+  - REGENERATION:
+      chance: 0.5
+      amplifier: 1
+  - BLINDNESS:
+      chance: 0.2
+      amplfier: 3

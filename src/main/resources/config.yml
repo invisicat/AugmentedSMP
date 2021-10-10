@@ -22,10 +22,12 @@ modules:
     enabled: true
   leveling:
     enabled: true
-
+  bedhealing:
+    enabled: true
 
 
 ###
-# Metrics
+# Metrics & update checker
 ###
 metrics: true
+update_check: true

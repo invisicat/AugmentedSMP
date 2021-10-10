@@ -24,6 +24,7 @@ public class CorePlugin extends JavaPlugin {
      */
     public void registerListeners(Listener... listeners) {
         for (Listener listener : listeners) {
+            LoggingUtils.debug("Registering listener " + listener.toString());
             getServer().getPluginManager().registerEvents(listener, this);
         }
     }

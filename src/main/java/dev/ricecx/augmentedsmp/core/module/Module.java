@@ -9,4 +9,6 @@ public @interface Module {
     String name();
     String description() default "No description for this module yet :(";
     String parentConfig();
+    String configName() default "";
+    Class<? extends ModuleConfig> configClass() default ModuleConfig.class;
 }

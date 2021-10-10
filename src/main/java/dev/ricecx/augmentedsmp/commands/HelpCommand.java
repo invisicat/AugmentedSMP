@@ -1,7 +1,5 @@
 package dev.ricecx.augmentedsmp.commands;
 
-
-import dev.ricecx.augmentedsmp.AugmentedSMP;
 import dev.ricecx.augmentedsmp.core.command.CommandsEnum;
 import dev.ricecx.augmentedsmp.core.command.annotations.Command;
 import dev.ricecx.augmentedsmp.core.command.CommandCategory;
@@ -42,10 +40,11 @@ public class HelpCommand implements ICommand {
                 int pageNumber = Integer.parseInt(args[0]);
                 sendPaginatedHelpMessage(sender, pageNumber);
             } catch(NumberFormatException e) {
-                if(args[0].contains("command:") && CommandsEnum.fromName(args[0]).isPresent())
-                    sendCommandHelp(sender, CommandsEnum.fromName(args[0]).get());
-                else if(args[0].contains("category:") && CommandCategory.fromName(args[0]) != null)
-                    sendCategoryHelp(sender, CommandCategory.fromName(args[0]));
+                String[] input = args[0].split("(category:)|(command:)");
+                if(args[0].contains("command:") && CommandsEnum.fromName(input[1]).isPresent())
+                    sendCommandHelp(sender, CommandsEnum.fromName(input[1]).get());
+                else if(args[0].contains("category:") && CommandCategory.fromName(input[1]) != null)
+                    sendCategoryHelp(sender, CommandCategory.fromName(input[1]));
                 else
                     sendPaginatedHelpMessage(sender, 1);
             }
@@ -57,10 +56,11 @@ public class HelpCommand implements ICommand {
         BaseComponent[] title = Constants.createTitle().create();
         sender.sendMessage(" ");
         sender.spigot().sendMessage(title);
-        sender.sendMessage(command.getCommandMetadata().name());
-        sender.sendMessage("Usage:" + command.getCommandMetadata().usage());
-        sender.sendMessage("Aliases:" + String.join(",", command.getCommandMetadata().aliases()));
-        sender.sendMessage("Description:" + command.getCommandMetadata().description());
+        sender.sendMessage(fmt("&8--------------------------------------"));
+        sender.sendMessage(fmt("&dCommand:" + command.getCommandMetadata().name()));
+        sender.sendMessage("&dUsage: " + command.getCommandMetadata().usage());
+        sender.sendMessage("&dAliases: " + String.join(",", command.getCommandMetadata().aliases()));
+        sender.sendMessage("&dDescription: " + command.getCommandMetadata().description());
     }
 
     private void sendHelpMessage(CommandSender sender) {
