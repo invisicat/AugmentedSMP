@@ -1,0 +1,74 @@
+name: Maven CI
+
+on: [push, pull_request]
+
+jobs:
+  # Build latest NMS version
+  nms:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup JDK 16
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt-hotspot'
+          java-version: '16'
+      - name: Cache CraftBukkit Maven Packages
+        id: cacheNMS
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository/org/bukkit/craftbukkit/1.17.1-R0.1-SNAPSHOT/
+          key: ${{ runner.os }}-1.17.1
+          restore-keys: ${{ runner.os }}-1.17.1
+      - name: Cache Maven Packages
+        id: cacheAugmentedSMP
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2_1.17.1
+          restore-keys: ${{ runner.os }}-m2_1.17.1
+      - name: Setup Build Tools
+        run: mkdir BuildTools && wget -O BuildTools/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+      - name: Check 1.17.1
+        id: buildTools
+        run: test -f ~/.m2/repository/org/bukkit/craftbukkit/1.17.1-R0.1-SNAPSHOT/craftbukkit-1.17.1-R0.1-SNAPSHOT.jar && echo "::set-output name=sucess::true" || echo "::set-output name=sucess::false"
+      - name: Build 1.17.1
+        if: steps.buildTools.outputs.success != 'true'
+        run: cd BuildTools && java -jar BuildTools.jar --rev 1.17.1 --compile craftbukkit
+  build:
+    runs-on: ubuntu-latest
+    needs: [nms]
+
+    steps:
+      - name: Checkout AugmentedSMP
+        uses: actions/checkout@v1
+      - name: Set up JDK 16
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt-hotspot'
+          java-version: '16'
+      - name: Cache Maven packages
+        id: cacheMain
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2
+          restore-keys: ${{ runner.os }}-m2
+      - name: Cache 1.17 Maven package
+        id: cacheGoats
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.m2/repository/org/spigotmc/spigot/1.17-R0.1-SNAPSHOT/
+            ~/.m2/repository/org/spigotmc/spigot-parent/
+            ~/.m2/repository/org/spigotmc/minecraft-server/
+          key: ${{ runner.os }}-spigot-1.17.0-all
+          restore-keys: ${{ runner.os }}-spigot-1.17.0-all
+      - name: Build with Maven
+        run: mvn -T 1C -B package --file pom.xml
+      - name: Stage jar
+        run: mkdir staging && cp target/AugmentedSMP.jar staging && mv staging/AugmentedSMP.jar staging/AugmentedSMP_$GITHUB_SHA.jar
+      - name: Upload jar
+        uses: actions/upload-artifact@v2
+        with:
+          name: AugmentedSMP_Dev-Build
+          path: staging/AugmentedSMP_*.jar
