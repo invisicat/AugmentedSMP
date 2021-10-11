@@ -43,7 +43,6 @@ public interface ModuleConfig {
             try {
                 configField.setAccessible(true);
                 String key = !configMetadata.parentKey().isEmpty() ? configMetadata.parentKey() + "." + configField.getName() : configField.getName();
-                System.out.println("SETTING FROM CONFIG " + key + " TO " + configField.getName());
                 if(configField.isAnnotationPresent(ConfigAdapter.class)) {
                     ConfigSerializable<?> adapter = configField.getAnnotation(ConfigAdapter.class).adapter().getDeclaredConstructor().newInstance();
                     configField.set(this, adapter.deserialize(configuration.getFileConfiguration().getConfigurationSection(key)));

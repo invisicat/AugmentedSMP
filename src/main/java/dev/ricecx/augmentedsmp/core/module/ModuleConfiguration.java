@@ -32,7 +32,6 @@ public class ModuleConfiguration {
     }
 
     private static File createFile(String name) throws IOException {
-        System.out.println("CREATE FILE " + name);
         File file = new File(AugmentedSMP.getInstance().getDataFolder(), "modules/" + name);
         LoggingUtils.info(file.getPath());
         if (!file.exists())

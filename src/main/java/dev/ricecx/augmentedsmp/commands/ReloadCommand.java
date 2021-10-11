@@ -8,11 +8,11 @@ import dev.ricecx.augmentedsmp.modules.ModulesEnum;
 import org.bukkit.command.CommandSender;
 
 @Command(
-        name = "config",
-        description = "Reloads the config",
+        name = "reload",
+        description = "Reloads AugmentedSMP",
         category = CommandCategory.GENERAL
 )
-public class ConfigCommand implements ICommand {
+public class ReloadCommand implements ICommand {
 
     @Override
     public void run(CommandSender sender, String[] args) {
@@ -20,6 +20,6 @@ public class ConfigCommand implements ICommand {
             module.getModule().loadConfiguration();
         }
 
-        sender.sendMessage("Reloaded the Config!");
+        sender.sendMessage("Successfully reloaded AugmentedSMP");
     }
 }

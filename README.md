@@ -26,6 +26,8 @@ AugmentedSMP is filled with features and are all toggleable. Here is a list of a
 - Configurable Weather
 - Configurable Mob Spawning behavior
 - Custom Mob/AI
+- Update Checker
+- Config is configurable through GUIs
 
 
 ## Contribute

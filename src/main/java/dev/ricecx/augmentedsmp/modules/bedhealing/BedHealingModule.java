@@ -6,6 +6,7 @@ import dev.ricecx.augmentedsmp.core.module.Module;
 import dev.ricecx.augmentedsmp.utils.RandomCollection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -43,5 +44,13 @@ public class BedHealingModule extends AbstractModule {
         }
     }
 
+    @EventHandler
+    public void onExitBed(PlayerBedLeaveEvent evt) {
+        if (!isModuleEnabled()) return;
+        BedHealingConfig config = getConfig(BedHealingConfig.class);
 
+        for (PotionEffectType potion : config.getPotions().keySet()) {
+            evt.getPlayer().removePotionEffect(potion);
+        }
+    }
 }
