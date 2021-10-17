@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 public class InventoryToggleGlassButton extends InventoryToggleButton {
 
 
-    public InventoryToggleGlassButton(Boolean defaultStatus, Consumer<Boolean> onChange) {
-        super(new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).toItemStack(), new ItemBuilder(Material.RED_STAINED_GLASS_PANE).toItemStack(), defaultStatus, onChange);
+    public InventoryToggleGlassButton(String name, Boolean defaultStatus, Consumer<Boolean> onChange) {
+        super(new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).setName("&aEnable " + name).toItemStack(), new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setName("&cDisable " + name).toItemStack(), defaultStatus, onChange);
     }
 }

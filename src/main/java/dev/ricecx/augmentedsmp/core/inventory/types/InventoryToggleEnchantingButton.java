@@ -12,6 +12,7 @@ public class InventoryToggleEnchantingButton extends InventoryToggleButton {
     public InventoryToggleEnchantingButton(ItemStack item, String name, Boolean defaultStatus) {
         this(item, name, defaultStatus, null);
     }
+
     public InventoryToggleEnchantingButton(ItemStack item, String name, Boolean defaultStatus, Consumer<Boolean> onChange) {
         super(new ItemBuilder(item).setName("&aEnable " + name).toItemStack(), new ItemBuilder(item).addEnchantGlow(Enchantment.DAMAGE_ALL, 1).setName("&cDisable " + name).toItemStack(), defaultStatus, onChange);
     }

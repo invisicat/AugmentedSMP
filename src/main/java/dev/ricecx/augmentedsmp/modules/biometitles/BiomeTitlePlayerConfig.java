@@ -26,9 +26,9 @@ public class BiomeTitlePlayerConfig extends AbstractPlayerConfig {
         Boolean isSoundEnabled = cachingManager.get(player, BiomeTitleKeys.SOUND.getKey(), false, Boolean.class);
         Boolean isTitleEnabled = cachingManager.get(player, BiomeTitleKeys.TITLE.getKey(), true, Boolean.class);
 
-        menu.setButton(12, new InventoryToggleEnchantingButton(new ItemBuilder(Material.NOTE_BLOCK).setLore(getSoundLore()).toItemStack(), "Sound", isSoundEnabled, (ch) -> cachingManager.set(player, BiomeTitleKeys.SOUND.getKey(), ch)));
+        menu.setButton(21, new InventoryToggleEnchantingButton(new ItemBuilder(Material.NOTE_BLOCK).setLore(getSoundLore()).toItemStack(), "Sound", isSoundEnabled, (ch) -> cachingManager.set(player, BiomeTitleKeys.SOUND.getKey(), ch)));
 
-        menu.setButton(14, new InventoryToggleEnchantingButton(new ItemBuilder(Material.LEVER).toItemStack(), "Title", isTitleEnabled, (ch) -> cachingManager.set(player, BiomeTitleKeys.TITLE.getKey(), ch)));
+        menu.setButton(23, new InventoryToggleEnchantingButton(new ItemBuilder(Material.LEVER).toItemStack(), "Title", isTitleEnabled, (ch) -> cachingManager.set(player, BiomeTitleKeys.TITLE.getKey(), ch)));
 
         player.openInventory(menu.getInventory());
     }

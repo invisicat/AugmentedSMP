@@ -2,9 +2,12 @@ package dev.ricecx.augmentedsmp.core.inventory;
 
 import org.bukkit.inventory.ItemStack;
 
+import java.util.function.Consumer;
+
 public class InventoryButton {
 
     private InventoryButtonListener listener;
+    private Consumer<InventoryButton> updateHandler;
     private ItemStack icon;
 
     public InventoryButton(ItemStack icon) {
@@ -18,6 +21,15 @@ public class InventoryButton {
 
     public void setIcon(ItemStack icon) {
         this.icon = icon;
+    }
+
+    public InventoryButton setUpdateHandler(Consumer<InventoryButton> handler) {
+        this.updateHandler = handler;
+        return this;
+    }
+
+    public Consumer<InventoryButton> getUpdateHandler() {
+        return updateHandler;
     }
 
     public void setListener(InventoryButtonListener listener) {

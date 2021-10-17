@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;

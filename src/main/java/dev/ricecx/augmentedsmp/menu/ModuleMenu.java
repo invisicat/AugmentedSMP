@@ -17,7 +17,6 @@ public class ModuleMenu extends InventoryMenu {
         setButton(getPageSize() - 9, new InventoryButton(Constants.LEFT_ARROW, (click) -> {
             click.getWhoClicked().closeInventory();
             ((Player) click.getWhoClicked()).performCommand("asmp settings");
-
         }));
     }
 }

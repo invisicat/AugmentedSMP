@@ -36,6 +36,8 @@ modules:
     enabled: true
   biome-titles:
     enabled: true
+  tool-maintenance:
+    enabled: true
 
 
 ###

@@ -4,6 +4,7 @@ import dev.ricecx.augmentedsmp.core.module.AbstractModule;
 import dev.ricecx.augmentedsmp.modules.bedhealing.BedHealingModule;
 import dev.ricecx.augmentedsmp.modules.biometitles.BiomeTitleModule;
 import dev.ricecx.augmentedsmp.modules.customcrafts.CustomCraftsModule;
+import dev.ricecx.augmentedsmp.modules.toolmaintenance.ToolMaintenanceModule;
 import dev.ricecx.augmentedsmp.modules.experiencemultiplier.XPMultiplierModule;
 import dev.ricecx.augmentedsmp.modules.foodbuff.FoodBuffModule;
 import dev.ricecx.augmentedsmp.modules.inventorydeath.InventoryDeathModule;
@@ -22,7 +23,8 @@ public enum ModulesEnum {
     SUPPLY_DROPS(new SupplyDropModule()),
     JOIN_EVENTS(new JoinEventsModule()),
     TIME_SKIP(new TimeSkipModule()),
-    BIOME_TITLES(new BiomeTitleModule())
+    BIOME_TITLES(new BiomeTitleModule()),
+    TOOL_MAINTENANCE(new ToolMaintenanceModule())
     ;
 
     private static final ModulesEnum[] CACHE = values();
