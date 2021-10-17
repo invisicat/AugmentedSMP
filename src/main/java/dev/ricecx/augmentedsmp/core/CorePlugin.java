@@ -5,18 +5,22 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public class CorePlugin extends JavaPlugin {
 
     private final boolean paper;
+    private final String databasePath = this.getDataFolder().getPath();
 
     public CorePlugin() {
         paper = isUsingPaper();
 
         configureLogger();
     }
+
+
     /**
      * Register a listener to Bukkit
      *
@@ -46,6 +50,12 @@ public class CorePlugin extends JavaPlugin {
         Bukkit.addRecipe(recipe);
     }
 
+    private void loadDependencies() {
+        for (Dependencies dependency : Dependencies.values()) {
+            Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(dependency.getName());
+
+        }
+    }
     private void configureLogger() {
         this.saveDefaultConfig();
         if(this.getConfig().getBoolean("verbose"))
@@ -61,8 +71,11 @@ public class CorePlugin extends JavaPlugin {
             return false;
         }
     }
-
     public boolean isPaper() {
         return paper;
+    }
+
+    public String getDatabasePath() {
+        return databasePath;
     }
 }

@@ -1,5 +1,7 @@
 package dev.ricecx.augmentedsmp.database;
 
+import org.intellij.lang.annotations.Language;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +32,7 @@ public class SQLUtils {
      *     });
      * </pre>
      */
-    public <R> R executeQuery(String sql, ThrowingConsumer<PreparedStatement> cfg, ThrowingFunction<ResultSet, R, SQLException> op) {
+    public <R> R executeQuery(@Language("SQL")String sql, ThrowingConsumer<PreparedStatement> cfg, ThrowingFunction<ResultSet, R, SQLException> op) {
         return wrapException(sql, s -> {
             cfg.accept(s);
             return op.apply(s.executeQuery());
@@ -50,7 +52,7 @@ public class SQLUtils {
      *     });
      * </pre>
      */
-    public int executeUpdate(String sql, ThrowingConsumer<PreparedStatement> cfg) {
+    public int executeUpdate(@Language("SQL") String sql, ThrowingConsumer<PreparedStatement> cfg) {
         return wrapException(sql, s -> {
             cfg.accept(s);
             return s.executeUpdate();
@@ -71,7 +73,7 @@ public class SQLUtils {
      *                        rs -> rs.next()? rs.getInt(1): -1);
      * </pre>
      */
-    public <R> R executeQuery(String sql, ThrowingFunction<ResultSet, R, SQLException> op) {
+    public <R> R executeQuery(@Language("SQL") String sql, ThrowingFunction<ResultSet, R, SQLException> op) {
         return wrapException(sql, s -> op.apply(s.executeQuery(sql)));
     }
 
@@ -83,11 +85,11 @@ public class SQLUtils {
      *     executeUpdate("UPDATE foo SET life = 60 WHERE bar_count > 50");
      * </pre>
      */
-    public int executeUpdate(String sql) {
+    public int executeUpdate(@Language("SQL") String sql) {
         return wrapException(sql, s -> s.executeUpdate(sql));
     }
 
-    private <T> T wrapException(String sql, ThrowingFunction<PreparedStatement, T, SQLException> operation) {
+    private <T> T wrapException(@Language("SQL")String sql, ThrowingFunction<PreparedStatement, T, SQLException> operation) {
         if (connection == null)
             throw new IllegalStateException("SqlUtils Connection is null! make sure to call SQLUtils.setConnection(<Connection>);");
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

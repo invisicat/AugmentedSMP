@@ -12,6 +12,7 @@ public class AbstractModule implements Listener {
     private final String description;
     private final String configKey;
     private final ModuleConfig config;
+    private AbstractPlayerConfig playerConfig;
 
     public AbstractModule() {
         Module metadata = this.getClass().getAnnotation(Module.class);
@@ -19,6 +20,8 @@ public class AbstractModule implements Listener {
         this.description = metadata.description();
         this.configKey = metadata.parentConfig();
         this.config = loadConfiguration();
+        if (metadata.playerConfigClass() != null)
+            this.playerConfig = createObject(metadata.playerConfigClass());
 
         AugmentedSMP.getInstance().registerListeners(this);
     }
@@ -37,7 +40,7 @@ public class AbstractModule implements Listener {
         try {
             object = clazz.getConstructor().newInstance();
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            e.printStackTrace();
+           //
         }
 
         return object;
@@ -61,6 +64,10 @@ public class AbstractModule implements Listener {
     public <T> T getConfig(Class<? extends T> clazz) {
      if(!clazz.isInstance(this.config)) throw new InvalidConfigurationCastException("Check to make sure module annotation is setup properly.");
         return clazz.cast(this.config);
+    }
+
+    public AbstractPlayerConfig getPlayerConfig() {
+        return playerConfig;
     }
 
     public void cleanUp() {}

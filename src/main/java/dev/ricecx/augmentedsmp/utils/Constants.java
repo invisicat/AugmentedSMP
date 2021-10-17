@@ -3,10 +3,15 @@ package dev.ricecx.augmentedsmp.utils;
 import dev.ricecx.augmentedsmp.AugmentedSMP;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public class Constants {
 
     public static final String RESOURCE_ID = "";
+
+    public static final ItemStack LEFT_ARROW = new ItemBuilder(Material.PLAYER_HEAD).setName("&b← Previous Page").setSkullOwnerNMS(new ItemBuilder.SkullData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2RjOWU0ZGNmYTQyMjFhMWZhZGMxYjViMmIxMWQ4YmVlYjU3ODc5YWYxYzQyMzYyMTQyYmFlMWVkZDUifX19", ItemBuilder.SkullDataType.TEXTURE)).toItemStack();
+    public static final ItemStack RIGHT_ARROW = new ItemBuilder(Material.PLAYER_HEAD).setName("&bNext Page →").setSkullOwnerNMS(new ItemBuilder.SkullData("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU2YTM2MTg0NTllNDNiMjg3YjIyYjdlMjM1ZWM2OTk1OTQ1NDZjNmZjZDZkYzg0YmZjYTRjZjMwYWI5MzExIn19fQ==", ItemBuilder.SkullDataType.TEXTURE)).toItemStack();
 
     public static ComponentBuilder createTitle() {
         return new ComponentBuilder()

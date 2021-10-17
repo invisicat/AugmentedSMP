@@ -3,6 +3,7 @@ package dev.ricecx.augmentedsmp.core.command;
 import dev.ricecx.augmentedsmp.commands.ReloadCommand;
 import dev.ricecx.augmentedsmp.commands.HelpCommand;
 import dev.ricecx.augmentedsmp.commands.ModulesCommand;
+import dev.ricecx.augmentedsmp.commands.SettingsCommand;
 import dev.ricecx.augmentedsmp.core.command.annotations.Command;
 
 import java.util.Optional;
@@ -11,7 +12,8 @@ public enum CommandsEnum {
 
     HELP(new HelpCommand()),
     MODULES(new ModulesCommand()),
-    CONFIG(new ReloadCommand())
+    CONFIG(new ReloadCommand()),
+    SETTINGS(new SettingsCommand())
     ;
 
     private static final CommandsEnum[] CACHE = values();

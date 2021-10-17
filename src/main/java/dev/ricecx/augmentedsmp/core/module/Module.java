@@ -9,6 +9,8 @@ public @interface Module {
     String name();
     String description() default "No description for this module yet :(";
     String parentConfig();
+    boolean forUser() default false;
     String configName() default "";
     Class<? extends ModuleConfig> configClass() default ModuleConfig.class;
+    Class<? extends AbstractPlayerConfig> playerConfigClass() default AbstractPlayerConfig.class;
 }

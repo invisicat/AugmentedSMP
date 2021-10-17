@@ -8,6 +8,16 @@
 verbose: false
 language: en-US
 
+###
+# Database
+###
+database:
+  type: sqlite
+  host: localhost:3306
+  database: asmp
+  auth:
+    user: username
+    password: password
 
 ###
 # Placeholder API
@@ -23,6 +33,8 @@ modules:
   leveling:
     enabled: true
   bedhealing:
+    enabled: true
+  biome-titles:
     enabled: true
 
 

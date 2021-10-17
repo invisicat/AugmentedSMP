@@ -15,7 +15,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Module(
         name = "Join Events",
-        parentConfig = "joinevents"
+        parentConfig = "joinevents",
+        forUser = true,
+        playerConfigClass = JoinEventPlayerConfig.class
 )
 public class JoinEventsModule extends AbstractModule {
 
