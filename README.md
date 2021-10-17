@@ -15,20 +15,20 @@ AugmentedSMP is modular, asynchronous, and insanely lightweight in order to keep
 
 AugmentedSMP is filled with features and are all toggleable. Here is a list of all the features in this plugin:
 
-- Custom Structure Generation
-- Custom Mob/AI
-- Health regeneration during sleep
-- Keep your inventory during accidents (fire / void)
-- Leveling System 
-- Daily login rewards
-- Curated Supply Drops
-- Custom Crafts
-- Configurable Repair / Mending multiplier tweaks
-- Configurable day/night cycle
-- Configurable Weather
-- Configurable Mob Spawning behavior
-- Update Checker
-- Config is configurable through GUIs
+- [ ] Custom Structure Generation
+- [ ] Custom Mob/AI
+- [x] Health regeneration during sleep
+- [ ] Keep your inventory during accidents (fire / void)
+- [ ] Leveling System 
+- [ ] Daily login rewards
+- [ ] Curated Supply Drops
+- [ ] Custom Crafts
+- [x] Configurable Repair / Mending multiplier tweaks
+- [x] Configurable day/night cycle
+- [ ] Configurable Weather
+- [ ] Configurable Mob Spawning behavior
+- [x] Update Checker
+- [x] Config is configurable through GUIs
 
 
 ## Contribute
