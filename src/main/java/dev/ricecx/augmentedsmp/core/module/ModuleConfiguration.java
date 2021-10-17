@@ -1,5 +1,6 @@
 package dev.ricecx.augmentedsmp.core.module;
 
+import com.mysql.jdbc.log.Log;
 import dev.ricecx.augmentedsmp.AugmentedSMP;
 import dev.ricecx.augmentedsmp.utils.LoggingUtils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,7 +34,7 @@ public class ModuleConfiguration {
 
     private static File createFile(String name) throws IOException {
         File file = new File(AugmentedSMP.getInstance().getDataFolder(), "modules/" + name);
-        LoggingUtils.info(file.getPath());
+        LoggingUtils.debug(file.getPath());
         if (!file.exists())
             if (!file.createNewFile())
                 return null;
