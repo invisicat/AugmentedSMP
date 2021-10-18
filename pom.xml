@@ -42,9 +42,15 @@
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
+                                <!-- bStats -->
                                 <relocation>
                                     <pattern>org.bstats</pattern>
-                                    <shadedPattern>dev.ricecx.augmentedsmp</shadedPattern>
+                                    <shadedPattern>dev.ricecx.bStats</shadedPattern>
+                                </relocation>
+                                <!-- ParticleNativeAPI -->
+                                <relocation>
+                                    <pattern>com.github.fierioziy.particlenativeapi</pattern>
+                                    <shadedPattern>dev.ricecx.particleapi</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
@@ -94,6 +100,13 @@
             <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- ParticleNativeAPI (SHADED) -->
+        <dependency>
+            <groupId>com.github.fierioziy.particlenativeapi</groupId>
+            <artifactId>ParticleNativeAPI-core</artifactId>
+            <version>3.1.0</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- JetBrains Annotations -->
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -106,6 +119,7 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
+            <scope>compile</scope>
         </dependency>
         <!-- Hikari -->
         <dependency>
@@ -119,12 +133,14 @@
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-core</artifactId>
             <version>7.3.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <!-- WorldEdit-Bukkit API -->
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
             <version>7.3.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <!-- Mojang's authlib -->
         <dependency>
@@ -132,6 +148,12 @@
             <artifactId>authlib</artifactId>
             <version>1.5.21</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- ParticlesLib -->
+        <dependency>
+            <groupId>xyz.xenondevs</groupId>
+            <artifactId>particle</artifactId>
+            <version>1.6.6</version>
         </dependency>
     </dependencies>
 </project>

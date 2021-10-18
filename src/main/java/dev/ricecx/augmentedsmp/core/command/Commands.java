@@ -1,37 +1,35 @@
 package dev.ricecx.augmentedsmp.core.command;
 
-import dev.ricecx.augmentedsmp.commands.ReloadCommand;
-import dev.ricecx.augmentedsmp.commands.HelpCommand;
-import dev.ricecx.augmentedsmp.commands.ModulesCommand;
-import dev.ricecx.augmentedsmp.commands.SettingsCommand;
+import dev.ricecx.augmentedsmp.commands.*;
 import dev.ricecx.augmentedsmp.core.command.annotations.Command;
 
 import java.util.Optional;
 
-public enum CommandsEnum {
+public enum Commands {
 
     HELP(new HelpCommand()),
     MODULES(new ModulesCommand()),
     CONFIG(new ReloadCommand()),
-    SETTINGS(new SettingsCommand())
+    SETTINGS(new SettingsCommand()),
+    SPAWN_PARTICLES(new SpawnParticleCommand())
     ;
 
-    private static final CommandsEnum[] CACHE = values();
+    private static final Commands[] CACHE = values();
     private final ICommand command;
 
-    CommandsEnum(ICommand command) {
+    Commands(ICommand command) {
         this.command = command;
     }
 
     public static Optional<ICommand> getCommand(String name) {
-        for (CommandsEnum command : CACHE)
+        for (Commands command : CACHE)
             if(command.getCommandMetadata().name().equals(name)) return Optional.of(command.getCommand());
 
         return Optional.empty();
     }
 
-    public static Optional<CommandsEnum> fromName(String name) {
-        for (CommandsEnum command : CACHE)
+    public static Optional<Commands> fromName(String name) {
+        for (Commands command : CACHE)
             if(command.getCommandMetadata().name().equals(name)) return Optional.of(command);
 
         return Optional.empty();

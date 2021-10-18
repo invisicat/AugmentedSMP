@@ -3,6 +3,7 @@ package dev.ricecx.augmentedsmp.core.command;
 public enum CommandCategory {
     GENERAL,
     PLAYER,
+    DEBUG,
     NONE
     ;
 

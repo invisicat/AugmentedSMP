@@ -1,6 +1,10 @@
 package dev.ricecx.augmentedsmp.core;
 
+import com.github.fierioziy.particlenativeapi.api.ParticleNativeAPI;
+import com.github.fierioziy.particlenativeapi.api.utils.ParticleException;
+import com.github.fierioziy.particlenativeapi.core.ParticleNativeCore;
 import dev.ricecx.augmentedsmp.utils.LoggingUtils;
+import dev.ricecx.augmentedsmp.utils.Version;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
@@ -13,6 +17,7 @@ public class CorePlugin extends JavaPlugin {
 
     private final boolean paper;
     private final String databasePath = this.getDataFolder().getPath();
+
 
     public CorePlugin() {
         paper = isUsingPaper();
@@ -77,5 +82,17 @@ public class CorePlugin extends JavaPlugin {
 
     public String getDatabasePath() {
         return databasePath;
+    }
+
+    public ParticleNativeAPI registerParticleAPI() {
+        ParticleNativeAPI api = null;
+        try {
+            api = ParticleNativeCore.loadAPI(this);
+            this.getLogger().info("Native Particle API has loaded for " + Version.getServerVersion(this.getServer()));
+        } catch (ParticleException e) {
+            this.getLogger().severe("Could not load Native Particle API. Disabling plugin...");
+            e.printStackTrace();
+        }
+        return api;
     }
 }

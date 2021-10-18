@@ -54,10 +54,8 @@ public class ToolMaintenanceModule extends AbstractModule {
 
         Boolean isEnabled = cachingManager.get(evt.getPlayer(), "dur-sound", false, Boolean.class);
 
-        System.out.println(isEnabled);
         if(isTool(evt.getItem()) && isEnabled) {
             Damageable meta = ((Damageable) evt.getItem().getItemMeta());
-            System.out.println(meta);
             if(meta == null) return;
             int damageAt = evt.getItem().getType().getMaxDurability() - meta.getDamage();
             if(damageAt <= 10) {

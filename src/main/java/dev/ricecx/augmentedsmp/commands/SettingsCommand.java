@@ -6,7 +6,7 @@ import dev.ricecx.augmentedsmp.core.command.annotations.Command;
 import dev.ricecx.augmentedsmp.core.inventory.InventoryButton;
 import dev.ricecx.augmentedsmp.core.inventory.InventoryMenu;
 import dev.ricecx.augmentedsmp.core.module.AbstractPlayerConfig;
-import dev.ricecx.augmentedsmp.modules.ModulesEnum;
+import dev.ricecx.augmentedsmp.modules.Modules;
 import dev.ricecx.augmentedsmp.utils.DurationFormatter;
 import dev.ricecx.augmentedsmp.utils.ItemBuilder;
 import org.bukkit.Material;
@@ -40,7 +40,7 @@ public class SettingsCommand implements ICommand {
             menu.setButton(i, new InventoryButton(new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack()));
         }
 
-        for (ModulesEnum module : ModulesEnum.values()) {
+        for (Modules module : Modules.values()) {
             AbstractPlayerConfig cfg = module.getModule().getPlayerConfig();
 
             if (cfg != null)

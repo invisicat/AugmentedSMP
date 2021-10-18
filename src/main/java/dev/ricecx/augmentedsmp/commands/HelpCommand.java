@@ -1,6 +1,6 @@
 package dev.ricecx.augmentedsmp.commands;
 
-import dev.ricecx.augmentedsmp.core.command.CommandsEnum;
+import dev.ricecx.augmentedsmp.core.command.Commands;
 import dev.ricecx.augmentedsmp.core.command.annotations.Command;
 import dev.ricecx.augmentedsmp.core.command.CommandCategory;
 import dev.ricecx.augmentedsmp.core.command.ICommand;
@@ -41,8 +41,8 @@ public class HelpCommand implements ICommand {
                 sendPaginatedHelpMessage(sender, pageNumber);
             } catch(NumberFormatException e) {
                 String[] input = args[0].split("(category:)|(command:)");
-                if(args[0].contains("command:") && CommandsEnum.fromName(input[1]).isPresent())
-                    sendCommandHelp(sender, CommandsEnum.fromName(input[1]).get());
+                if(args[0].contains("command:") && Commands.fromName(input[1]).isPresent())
+                    sendCommandHelp(sender, Commands.fromName(input[1]).get());
                 else if(args[0].contains("category:") && CommandCategory.fromName(input[1]) != null)
                     sendCategoryHelp(sender, CommandCategory.fromName(input[1]));
                 else
@@ -52,7 +52,7 @@ public class HelpCommand implements ICommand {
     }
 
     private void sendCategoryHelp(CommandSender sender, CommandCategory category) {}
-    private void sendCommandHelp(CommandSender sender, CommandsEnum command) {
+    private void sendCommandHelp(CommandSender sender, Commands command) {
         BaseComponent[] title = Constants.createTitle().create();
         sender.sendMessage(" ");
         sender.spigot().sendMessage(title);
@@ -64,13 +64,13 @@ public class HelpCommand implements ICommand {
     }
 
     private void sendHelpMessage(CommandSender sender) {
-        for (CommandsEnum command : CommandsEnum.values()) {
+        for (Commands command : Commands.values()) {
             sender.sendMessage("/asmp " + command.getCommandMetadata().name() + " - " + command.getCommandMetadata().description());
         }
     }
 
     private void sendPaginatedHelpMessage(CommandSender sender, int currPage) {
-        int maxPages = (int) Math.ceil(CommandsEnum.values().length / 8.0);
+        int maxPages = (int) Math.ceil(Commands.values().length / 8.0);
 
         if(currPage > maxPages || currPage <= 0) currPage = 1;
 
@@ -93,7 +93,7 @@ public class HelpCommand implements ICommand {
         sender.sendMessage(fmt("&8--------------------------------------"));
 
         int idx = (currPage - 1) * 8;
-        for (CommandsEnum command : Arrays.stream(CommandsEnum.values()).collect(Collectors.toList()).subList(idx, Math.min(CommandsEnum.values().length, (idx + 8 - 1)))) {
+        for (Commands command : Arrays.stream(Commands.values()).collect(Collectors.toList()).subList(idx, Math.min(Commands.values().length, (idx + 8 - 1)))) {
             sender.sendMessage(fmt("&a/asmp " + command.getCommandMetadata().name() + " - " + command.getCommandMetadata().description()));
         }
     }
@@ -119,11 +119,11 @@ public class HelpCommand implements ICommand {
             for (CommandCategory category : CommandCategory.values()) {
                 combinations.add("category:" + StringUtils.capitalize(category.name().toLowerCase(Locale.ROOT)));
             }
-            for (CommandsEnum command : CommandsEnum.values()) {
+            for (Commands command : Commands.values()) {
                 combinations.add("command:" + command.getCommandMetadata().name());
             }
 
-            for (int i = 0; i < ((int) Math.ceil(CommandsEnum.values().length / 8.0)); i++) {
+            for (int i = 0; i < ((int) Math.ceil(Commands.values().length / 8.0)); i++) {
                 combinations.add(String.valueOf(i + 1));
             }
         }

@@ -44,14 +44,14 @@ public class CommandManager {
     }
 
     public ICommand getCommand(String name) {
-        ICommand command = cachedCommands.getOrDefault(name, CommandsEnum.getCommand(name).orElseThrow(NoCommandFoundException::new));
+        ICommand command = cachedCommands.getOrDefault(name, Commands.getCommand(name).orElseThrow(NoCommandFoundException::new));
         cachedCommands.putIfAbsent(name, command);
 
         return command;
     }
 
     private List<String> handleMainTabComplete() {
-        return Arrays.stream(CommandsEnum.values()).map((command) -> command.getCommandMetadata().name()).collect(Collectors.toList());
+        return Arrays.stream(Commands.values()).map((command) -> command.getCommandMetadata().name()).collect(Collectors.toList());
     }
 
     private List<String> handleCommandAutoCompletion(@NotNull CommandSender sender, @NotNull String[] args) {

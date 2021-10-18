@@ -1,5 +1,6 @@
 package dev.ricecx.augmentedsmp;
 
+import com.github.fierioziy.particlenativeapi.api.ParticleNativeAPI;
 import dev.ricecx.augmentedsmp.bStats.UpdateChecker;
 import dev.ricecx.augmentedsmp.core.CoreEvent;
 import dev.ricecx.augmentedsmp.core.CorePlugin;
@@ -9,7 +10,7 @@ import dev.ricecx.augmentedsmp.database.DatabaseManager;
 import dev.ricecx.augmentedsmp.database.SQLUtils;
 import dev.ricecx.augmentedsmp.database.utils.SQLTypes;
 import dev.ricecx.augmentedsmp.models.daos.AugmentedPlayerTable;
-import dev.ricecx.augmentedsmp.modules.ModulesEnum;
+import dev.ricecx.augmentedsmp.modules.Modules;
 import dev.ricecx.augmentedsmp.utils.LoggingUtils;
 import dev.ricecx.augmentedsmp.utils.PlayerCachingManager;
 
@@ -20,14 +21,19 @@ public final class AugmentedSMP extends CorePlugin {
     private DatabaseManager databaseManager;
     private PlayerCachingManager cachingManager;
 
+    /* APIs */
+    private ParticleNativeAPI particlesAPI;
+
     @Override
     public void onEnable() {
         long startingTime = System.currentTimeMillis();
 
+        particlesAPI = registerParticleAPI();
+
         commandManager = new CommandManager();
         cachingManager = new PlayerCachingManager();
         registerDatabase();
-        ModulesEnum.loadModules();
+        Modules.loadModules();
 
 
         registerListeners(new CoreEvent(), new InventoryMenuListener());
@@ -42,6 +48,7 @@ public final class AugmentedSMP extends CorePlugin {
 
         AugmentedPlayerTable.createDefaultTable();
     }
+
 
     @Override
     public void onDisable() {
@@ -62,5 +69,9 @@ public final class AugmentedSMP extends CorePlugin {
 
     public PlayerCachingManager getCachingManager() {
         return cachingManager;
+    }
+
+    public ParticleNativeAPI getParticlesAPI() {
+        return particlesAPI;
     }
 }

@@ -1,8 +1,8 @@
 package dev.ricecx.augmentedsmp.core;
 
 import dev.ricecx.augmentedsmp.AugmentedSMP;
+import dev.ricecx.augmentedsmp.core.events.AugmentedPlayerJoinEvent;
 import dev.ricecx.augmentedsmp.core.events.PlayerBiomeChangeEvent;
-import dev.ricecx.augmentedsmp.utils.LoggingUtils;
 import org.bukkit.block.Biome;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,5 +32,6 @@ public class CoreEvent implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent evt) {
+        AugmentedSMP.getInstance().callEvent(new AugmentedPlayerJoinEvent(evt.getPlayer(), evt.getJoinMessage()));
     }
 }
