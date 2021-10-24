@@ -34,7 +34,6 @@ public class BiomeTitleModule extends AbstractModule {
 
         evt.getPlayer().sendTitle(Utils.fixNamespaceString(evt.getBiome().name()), BiomeTitleUtils.getSubText(evt.getBiome()), 2 * 20,3 * 20, 20);
 
-
         if(soundEnabled)
             evt.getPlayer().playSound(evt.getPlayer().getLocation(), Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1,1);
     }

@@ -6,12 +6,16 @@ import com.github.fierioziy.particlenativeapi.core.ParticleNativeCore;
 import dev.ricecx.augmentedsmp.utils.LoggingUtils;
 import dev.ricecx.augmentedsmp.utils.Version;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CorePlugin extends JavaPlugin {
 
@@ -36,6 +40,10 @@ public class CorePlugin extends JavaPlugin {
             LoggingUtils.debug("Registering listener " + listener.toString());
             getServer().getPluginManager().registerEvents(listener, this);
         }
+    }
+
+    public List<Player> getAllOnlinePlayers() {
+        return Bukkit.getOnlinePlayers().parallelStream().collect(Collectors.toList());
     }
 
     /**

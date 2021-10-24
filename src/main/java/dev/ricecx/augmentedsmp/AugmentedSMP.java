@@ -4,6 +4,7 @@ import com.github.fierioziy.particlenativeapi.api.ParticleNativeAPI;
 import dev.ricecx.augmentedsmp.bStats.UpdateChecker;
 import dev.ricecx.augmentedsmp.core.CoreEvent;
 import dev.ricecx.augmentedsmp.core.CorePlugin;
+import dev.ricecx.augmentedsmp.core.event.EventManager;
 import dev.ricecx.augmentedsmp.core.command.CommandManager;
 import dev.ricecx.augmentedsmp.core.inventory.InventoryMenuListener;
 import dev.ricecx.augmentedsmp.database.DatabaseManager;
@@ -20,6 +21,7 @@ public final class AugmentedSMP extends CorePlugin {
     private CommandManager commandManager;
     private DatabaseManager databaseManager;
     private PlayerCachingManager cachingManager;
+    private EventManager eventManager;
 
     /* APIs */
     private ParticleNativeAPI particlesAPI;
@@ -32,6 +34,7 @@ public final class AugmentedSMP extends CorePlugin {
 
         commandManager = new CommandManager();
         cachingManager = new PlayerCachingManager();
+        eventManager = new EventManager();
         registerDatabase();
         Modules.loadModules();
 
@@ -69,6 +72,10 @@ public final class AugmentedSMP extends CorePlugin {
 
     public PlayerCachingManager getCachingManager() {
         return cachingManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
     }
 
     public ParticleNativeAPI getParticlesAPI() {

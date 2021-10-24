@@ -1,6 +1,5 @@
 package dev.ricecx.augmentedsmp.core.module;
 
-import com.mysql.jdbc.log.Log;
 import dev.ricecx.augmentedsmp.AugmentedSMP;
 import dev.ricecx.augmentedsmp.utils.LoggingUtils;
 import org.bukkit.configuration.file.FileConfiguration;

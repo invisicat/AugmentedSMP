@@ -10,21 +10,17 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.util.Vector;
-import xyz.xenondevs.particle.ParticleBuilder;
-import xyz.xenondevs.particle.ParticleEffect;
-import xyz.xenondevs.particle.data.ParticleData;
-import xyz.xenondevs.particle.task.SingularTask;
-import xyz.xenondevs.particle.task.TaskManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 @Module(
         name = "Ambient Biome Particles",
-        parentConfig = "ambient-particles"
+        parentConfig = "ambient-particles",
+        forUser = true,
+        playerConfigClass = AmbientParticlePlayerConfig.class
 )
 public class AmbientParticleModule extends AbstractModule {
 
@@ -35,7 +31,7 @@ public class AmbientParticleModule extends AbstractModule {
     public void spawnParticles(Player player) {
 
 
-        List<Location> locs = generateSampleSetPoints(player, 600);
+        List<Location> locs = generateSampleSetPoints(player, 1_200);
         var a = AugmentedSMP.getInstance().getParticlesAPI().getParticles_1_13();
 
         for (Location loc : locs) {
@@ -55,16 +51,16 @@ public class AmbientParticleModule extends AbstractModule {
         List<Location> locs = new ArrayList<>();
         for (int i = 0; i < pointsToGenerate; i++) {
             Vector center = player.getLocation().toVector();
-            var radius = player.getClientViewDistance() * 16;
+            double radius = player.getClientViewDistance() * 16;
 
             double x = center.getX();
             double y = center.getZ();
 
-            var r = radius * Math.sqrt(ThreadLocalRandom.current().nextDouble());
-            var t = ThreadLocalRandom.current().nextDouble() * 2 * Math.PI;
+            double r = radius * Math.sqrt(ThreadLocalRandom.current().nextDouble());
+            double t = ThreadLocalRandom.current().nextDouble() * 2 * Math.PI;
 
-            var x1 = x + (r * Math.cos(t));
-            var y2 = y + (r * Math.sin(t));
+            double x1 = x + (r * Math.cos(t));
+            double y2 = y + (r * Math.sin(t));
 
             locs.add(new Location(player.getWorld(), x1, ThreadLocalRandom.current().nextInt((int) player.getLocation().getY() - 15, (int) player.getLocation().getY() + 25) + ThreadLocalRandom.current().nextInt(3), y2));
         }

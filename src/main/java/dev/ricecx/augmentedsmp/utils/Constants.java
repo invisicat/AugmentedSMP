@@ -19,6 +19,7 @@ public class Constants {
                 .append(gradient("#b2ef91", "#fa9372", " v" + AugmentedSMP.getInstance().getDescription().getVersion() + " (MC " + AugmentedSMP.getInstance().getDescription().getAPIVersion() + ")"));
     }
 
+
     public static BaseComponent[] gradient(String hexStart, String hexStop, String text) {
         net.md_5.bungee.api.ChatColor start = net.md_5.bungee.api.ChatColor.of(hexStart);
         net.md_5.bungee.api.ChatColor stop = net.md_5.bungee.api.ChatColor.of(hexStop);

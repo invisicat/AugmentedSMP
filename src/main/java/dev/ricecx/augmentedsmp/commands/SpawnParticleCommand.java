@@ -33,13 +33,12 @@ public class SpawnParticleCommand implements ICommand {
     }
 
     private void runTask(Player player) {
-        PlayerCachingManager manager = AugmentedSMP.getInstance().getCachingManager();
         AmbientParticleModule module = Modules.getModule(AmbientParticleModule.class);
 
         new BukkitRunnable() {
             @Override
             public void run() {
-                Boolean running = manager.get(player, "particles-run", true, Boolean.class);
+                Boolean running = getCache(player, "particles-run", true, Boolean.class);
                 if(!running) {
                     cancel();
                     return;
@@ -52,7 +51,7 @@ public class SpawnParticleCommand implements ICommand {
 
     private void cancelTask(Player player) {
         PlayerCachingManager manager = AugmentedSMP.getInstance().getCachingManager();
-         manager.set(player, "particles-run", false);
+         setCache(player, "particles-run", false);
          player.sendMessage("Cancelled task");
     }
 }

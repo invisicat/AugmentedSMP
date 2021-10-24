@@ -149,11 +149,5 @@
             <version>1.5.21</version>
             <scope>provided</scope>
         </dependency>
-        <!-- ParticlesLib -->
-        <dependency>
-            <groupId>xyz.xenondevs</groupId>
-            <artifactId>particle</artifactId>
-            <version>1.6.6</version>
-        </dependency>
     </dependencies>
 </project>

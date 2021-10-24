@@ -18,6 +18,9 @@ public class BiomeTitleUtils {
             case DESERT -> {
                 return "Hot, scarce place.";
             }
+            case FOREST -> {
+                return "Woody, dark area.";
+            }
             default -> {
                 return "It's cold here...";
             }

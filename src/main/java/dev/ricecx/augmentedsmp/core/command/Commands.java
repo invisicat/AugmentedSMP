@@ -11,7 +11,9 @@ public enum Commands {
     MODULES(new ModulesCommand()),
     CONFIG(new ReloadCommand()),
     SETTINGS(new SettingsCommand()),
-    SPAWN_PARTICLES(new SpawnParticleCommand())
+    SPAWN_PARTICLES(new SpawnParticleCommand()),
+    SPAWN_MOB(new SpawnMobCommand()),
+    SPAWN_SUPPLY_DROP(new SpawnSupplyDropCommand())
     ;
 
     private static final Commands[] CACHE = values();
